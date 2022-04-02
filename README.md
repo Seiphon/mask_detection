@@ -1,4 +1,4 @@
-# idk
+# mask_detection
 
 #### 介绍
 基于yolov5的口罩检测项目
@@ -17,7 +17,13 @@
 
 #### 参与贡献
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+1. Fork 本仓库
+2. 新建 Feat_xxx 分支
+3. 提交代码
+4. 新建 Pull Request
+
+#### If error keep happening, try to modify upsampling.py as follows.
+    def forward(self, input: Tensor) -> Tensor:
+        # return F.interpolate(input, self.size, self.scale_factor, self.mode, self.align_corners,
+        #                      recompute_scale_factor=self.recompute_scale_factor)
+        return F.interpolate(input, self.size, self.scale_factor, self.mode, self.align_corners)
