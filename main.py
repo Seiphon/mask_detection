@@ -70,10 +70,10 @@ class WindowClass(QWidget):
         super(WindowClass, self).__init__(parent)
         self.setWindowTitle('口罩佩戴检测__by_Kid')
         self.setWindowIcon(QIcon('ico.jpg'))
-        self.btn_1 = QPushButton("从摄像头开始")
-        self.btn_2 = QPushButton("从文件开始")
-        self.btn_3 = QPushButton("显示结果")
-        self.btn_4 = QPushButton("退出")
+        self.btn_1 = QPushButton("Start from Camera")
+        self.btn_2 = QPushButton("Start from File")
+        self.btn_3 = QPushButton("Show the Result")
+        self.btn_4 = QPushButton("Exit")
 
 
         self.btn_1.setCheckable(True)
@@ -95,15 +95,15 @@ class WindowClass(QWidget):
 
 
     def wichBtn(self,btn):
-        print("点击的按钮是：" , btn.text())
-        if btn.text() == '退出':
+        print("The button clicked is：" , btn.text())
+        if btn.text() == 'Exit':
             sys.exit()
-        if btn.text() == '从摄像头开始':
+        if btn.text() == 'Start from Camera':
             run(**run_dict)
-        if btn.text() == '显示结果':
+        if btn.text() == 'Show the Result':
             path = os.getcwd() + r'\runs\detect'
             os.system("start explorer %s" %path)
-        if btn.text() == '从文件开始':
+        if btn.text() == 'Start from File':
             run(**run_dict_file)
 
 if __name__ == "__main__":
