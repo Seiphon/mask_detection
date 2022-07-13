@@ -1,6 +1,7 @@
 import os
 import sys
 import torch
+import cv2 as cv2
 
 from PyQt5.QtWidgets import QPushButton, QVBoxLayout, QWidget, QApplication
 from detect import run
@@ -102,9 +103,24 @@ class WindowClass(QWidget):
             run(**run_dict)
         if btn.text() == 'Show the Result':
             path = os.getcwd() + r'\runs\detect'
-            os.system("start explorer %s" %path)
+            self.showResult(path)
+            # os.system("start explorer %s" %path)
         if btn.text() == 'Start from File':
             run(**run_dict_file)
+
+    def showResult(self,path):
+        paths = os.listdir(path)
+        last_folder_path = os.path.join(path,paths[len(paths)-1])
+        files = os.listdir(last_folder_path)
+        for name in files:
+            if any(name.endswith(extension) for extension in ['.png', '.jpg', '.jpeg', '.PNG', '.JPG', '.JPEG']):
+                image = cv2.imread(os.path.join(last_folder_path,name))
+                self.cv_show('result',image)
+
+    def cv_show(self, name, img):
+        cv2.imshow(name, img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
