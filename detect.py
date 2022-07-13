@@ -9,6 +9,7 @@ Usage:
 import argparse
 import os
 import sys
+import keyboard
 from pathlib import Path
 
 import cv2
@@ -133,6 +134,10 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
         model(torch.zeros(1, 3, *imgsz).to(device).type_as(next(model.parameters())))  # run once
     dt, seen = [0.0, 0.0, 0.0], 0
     for path, img, im0s, vid_cap in dataset:
+        # If press 'Esc' key, the loop will pause
+        if keyboard.is_pressed('Esc'):
+            break
+
         t1 = time_sync()
         if onnx:
             img = img.astype('float32')
