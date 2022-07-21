@@ -69,8 +69,8 @@ run_dict_file = {
 class WindowClass(QWidget):
     def __init__(self,parent=None):
         super(WindowClass, self).__init__(parent)
-        self.setWindowTitle('口罩佩戴检测__by_Kid')
-        self.setWindowIcon(QIcon('ico.jpg'))
+        self.setWindowTitle('Mask Detection')
+        self.setWindowIcon(QIcon('icon.png'))
         self.btn_1 = QPushButton("Start from Camera")
         self.btn_2 = QPushButton("Start from File")
         self.btn_3 = QPushButton("Show the Result")
